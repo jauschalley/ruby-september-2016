@@ -1,0 +1,15 @@
+<h1>Edit Profile</h1>
+
+<form action="/users/update" method="post">
+	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+	Email: <input type="text" name="user[email]" id="Email" value="<%= @user.email %>">
+	Name: <input type="text" name="user[name]" id="Name" value="<%= @user.name %>">
+	Password: <input type="password" name="user[password]" id="Password" value="<%= @user.password %>">
+	Password Confirmation: <input type="password" name="user[password_confirmation]" id="Password Confirmation" value="<%= @user.password %>">
+	<input type="submit" name="commit" id="Update" value="Update">
+</form>
+
+<form action="/users/<%= session[:id] %>/destroy" method="post">
+<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+<input type="submit" name="commit" value="Delete Account" name="Delete Account">
+</form>
