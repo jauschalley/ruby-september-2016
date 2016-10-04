@@ -1,0 +1,39 @@
+<h1>Welcome!</h1>
+<div id="left_side">
+	<h2>Sign Up!</h2>
+	<form action="/users/create" method="post">
+		<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+		First Name: <input type="text" name="user[first_name]"><br>
+		Last Name: <input type="text" name="user[last_name]"><br>
+		Email: <input type="text" name="user[email]"><br>
+		Location: <input type="text" name="user[city]">
+		<select name="user[state]">
+			<option>VA</option>
+			<option>MD</option>
+			<option>NC</option>
+			<option>SC</option>
+			<option>GA</option>
+			<option>FL</option>
+			<option>PA</option>
+			<option>NY</option>
+		</select><br>
+		Password: <input type="password" name="user[password]"><br>
+		Confirm PW: <input type="password" name="user[confirmation]"><br>
+		<input type="submit" name="commit" value="Register">
+	</form>
+</div>
+<% if flash[:errors] %>
+	<% for i in flash[:errors] %>
+		<%= i %>.<br>
+	<% end %>
+<% end %>
+<div id="right_side">
+	<h2>Log In!</h2>
+	<form action="/sessions/log_in" method="post">
+		<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+		Email: <input type="text" name="user[email]" id="Email">
+		Password: <input type="password" name="user[password]" id="Password">
+		<input type="submit" name="commit" value="Log In" id="Log In">
+	</form>
+</div>
+

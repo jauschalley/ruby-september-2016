@@ -1,0 +1,15 @@
+<a href="/sessions/destroy">Log Out</a>
+<a href="/users/<%= session[:id] %>/show">My Profile</a>
+<h3>Users you may want to connect with:</h3>
+
+
+				
+
+<% for q in @users %>
+	<% temps = User.find(q.id).friendships.all %>
+	<% for r in temps %>
+		<% if session[:id] != r.user_id && session[:id] != r.friend_id %>
+			<a href="/users/view/<%=q.id %>"><%= q.name %></a>	<a href="/friends/create/<%= q.id %>">Connect!</a><br>
+		<%end%>
+	<%end%>
+<%end%>

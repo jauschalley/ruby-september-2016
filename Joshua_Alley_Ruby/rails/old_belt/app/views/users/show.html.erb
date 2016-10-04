@@ -1,0 +1,71 @@
+<div id="header">
+	<h1>Welcome, <%= @user.name %>!</h1>
+	<a href="/sessions/destroy">Log Out</a>
+	<a href="/users/all">All Users</a>
+</div>
+<div id="profile_description">
+	<h3>This is your profile description:</h3>
+	<h4>"<%= @user.description %>"</h4>
+</div>
+<h3>Your professional network:</h3>
+<div id="network">
+	<% for x in @friends %>
+		<% if session[:id] == x.user_id && x.status == "friend" %>
+			<% y = User.find(x[:friend_id]) %>
+			<a href="/users/view/<%=y.id %>"> <%= y.name %> </a><br>
+		<% end %>
+		<% if session[:id] == x.friend_id && x.status =="friend" %>
+			<% z = User.find(x[:user_id]) %>
+			<a href="/users/view/<%=z.id %>"> <%= z.name %> </a><br>
+		<% end %>
+	<% end %>
+</div>
+<div id="potential_friends">
+	<h4>The following people asked you to be in their network:</h4>
+	<table border="1">
+		<tr>
+			<th>Name</th>
+			<th>Action</th>
+		</tr>
+		<% for i in @friends %>
+			<% if session[:id] == i.friend_id && i.status == "invite" %>
+				<% buddy = User.find(i.user_id)%>
+					<tr>
+						<td><a href="/users/view/<%=i.id %>"><%= buddy.name %></a></td>
+						<td> <a href="/friends/update/<%=i.id %>">Accept!</a> <a href="/friends/<%=i.id %>/destroy">Ignore</a> </td>
+					</tr>
+				<% end %>
+		<% end %>
+	</table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+	#header a{
+		display: inline-block;
+	}
+	#header h1{
+		display: inline-block;
+	}
+	#network{
+		border: solid black 1px;
+		width: 20%;
+	}
+</style>

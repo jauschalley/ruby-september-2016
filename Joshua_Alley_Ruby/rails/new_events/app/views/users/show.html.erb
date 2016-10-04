@@ -1,0 +1,73 @@
+<div id="header">
+	<h1>Welcome, <%= @user.first_name %>!</h1>
+	<a href="/users/:id/edit">Edit My Profile</a>
+	<a href="/sessions/log_out">Log Out</a>
+</div>
+
+
+
+<div id="in_state">
+	<h3>Here are some events in your state:</h3>
+	<!-- for goes here -->
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Date</th>
+			<th>Location</th>
+			<th>Host</th>
+			<th>Action/Status</th>
+		</tr>
+	</table>
+</div>
+
+<div id="out_state">
+	<h3>Here are some events in other states:</h3>
+	<!-- form goes here -->
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Date</th>
+			<th>Location</th>
+			<th>State</th>
+			<th>Host</th>
+			<th>Action/Status</th>
+		</tr>
+	</table>
+</div>
+
+
+<!-- add event -->
+<div id="add_event">
+	<form action="'events/create" method="post">
+		<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+		Name: <input type="text" name="event[name]"><br>
+		Date: <input type="date" name="event[date]"><br>
+		Location: <input type="text" name="event[city]">
+		<select name="event[state]">
+			<option>VA</option>
+			<option>MD</option>
+			<option>NC</option>
+			<option>SC</option>
+			<option>GA</option>
+			<option>FL</option>
+			<option>PA</option>
+			<option>NY</option>
+		</select><br>
+		<input type="submit" name="commit" value="Add Event">
+	</form>
+</div>
+
+
+
+
+
+
+
+<style type="text/css">
+	#header a{
+		display: inline-block;
+	}
+	#header h1{
+		display: inline-block;
+	}
+</style>
